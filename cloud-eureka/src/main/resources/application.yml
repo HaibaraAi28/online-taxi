@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: eureka
+eureka:
+  client:
+    #是否将自己注册到Eureka Server,默认为true
+    register-with-eureka: false
+    #是否从eureka server获取注册信息
+    fetch-registry: false
+    #设置服务注册中心的URL，用于client和server端交流
+    service-url:
+      defaultZone: http://localhost:7900/eureka/,http://localhost:7901/eureka/,http://localhost:7902/eureka/
+
+#每个---相当于一个不同的yml配置文件
+---
+spring:
+  profiles: 7900
+server:
+  port: 7900
+eureka:
+  instance:
+    #每个服务实例的主机名
+    hostname: eureka-7900
+
+---
+spring:
+  profiles: 7901
+server:
+  port: 7901
+eureka:
+  instance:
+    hostname: eureka-7901
+
+---
+spring:
+  profiles: 7902
+server:
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902
